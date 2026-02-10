@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Живые истории - Digital-талисман</title>
+    <meta name="description" content="Собрание теплых воспоминаний о дошкольном образовании Мегино-Кангаласского улуса">
+    
+    <!-- PWA мета-теги -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stories.css">
+    <link rel="stylesheet" href="../css/mascot.css">
+    
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Slab:wght@300;400;700&display=swap&subset=cyrillic" rel="stylesheet">
+    
+    <!-- Иконки -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Шапка -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="../index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i> На главную
+                </a>
+                <h1>Живые истории</h1>
+                <p>Теплые воспоминания о детских садах разных лет</p>
+            </div>
+            <div class="header-logo">
+                <img src="../images/ui/logo-100-years.png" alt="100 лет дошкольного образования">
+            </div>
+        </header>
+
+        <!-- Контейнер для талисмана -->
+        <div id="mascot-container" class="mascot-container">
+            <div class="mascot" id="digital-mascot">
+                <img src="../images/mascot/horse-idle.png" alt="Талисман-конь" id="mascot-image">
+                <div class="speech-bubble" id="mascot-speech">
+                    Читайте истории и делитесь своими!
+                </div>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <main class="main-content stories-page">
+            <!-- Поиск и фильтры -->
+            <section class="stories-controls">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="story-search" placeholder="Поиск по историям...">
+                        <button id="clear-search" class="clear-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <button id="add-story-btn" class="btn btn-accent">
+                        <i class="fas fa-plus"></i> Добавить историю
+                    </button>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="year-filter"><i class="fas fa-calendar-alt"></i> Год:</label>
+                        <select id="year-filter">
+                            <option value="all">Все годы</option>
+                            <option value="1960">1960-е и ранее</option>
+                            <option value="1970">1970-е</option>
+                            <option value="1980">1980-е</option>
+                            <option value="1990">1990-е</option>
+                            <option value="2000">2000-е</option>
+                            <option value="2010">2010-е</option>
+                            <option value="2020">2020-е</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="role-filter"><i class="fas fa-user-tag"></i> Роль:</label>
+                        <select id="role-filter">
+                            <option value="all">Все</option>
+                            <option value="graduate">Выпускник</option>
+                            <option value="parent">Родитель</option>
+                            <option value="teacher">Воспитатель</option>
+                            <option value="veteran">Ветеран</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-filter"><i class="fas fa-sort"></i> Сортировка:</label>
+                        <select id="sort-filter">
+                            <option value="newest">Сначала новые</option>
+                            <option value="oldest">Сначала старые</option>
+                            <option value="popular">Самые популярные</option>
+                            <option value="random">Случайные</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-tags" id="active-filters">
+                    <!-- Активные фильтры будут добавляться сюда -->
+                </div>
+            </section>
+
+            <!-- Статистика -->
+            <section class="stories-stats">
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="total-stories">0</span>
+                            <span class="stat-label">всего историй</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="total-authors">0</span>
+                            <span class="stat-label">авторов</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="total-kindergartens">0</span>
+                            <span class="stat-label">детских садов</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="oldest-year">—</span>
+                            <span class="stat-label">самое раннее воспоминание</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Сетка историй -->
+            <section class="stories-grid-container">
+                <div class="stories-header">
+                    <h2><i class="fas fa-book-reader"></i> Воспоминания поколений</h2>
+                    <div class="view-toggle">
+                        <button id="grid-view" class="view-btn active">
+                            <i class="fas fa-th-large"></i> Сетка
+                        </button>
+                        <button id="list-view" class="view-btn">
+                            <i class="fas fa-list"></i> Список
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Сообщение при отсутствии историй -->
+                <div id="no-stories-message" class="no-stories-message" style="display: none;">
+                    <div class="empty-state">
+                        <i class="fas fa-book"></i>
+                        <h3>Пока нет историй</h3>
+                        <p>Будьте первым, кто поделится воспоминаниями!</p>
+                        <a href="../pages/add-story.html" class="btn btn-primary">
+                            <i class="fas fa-pen"></i> Написать историю
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Сетка историй -->
+                <div class="stories-grid" id="stories-grid">
+                    <!-- Истории будут загружаться динамически -->
+                    
+                    <!-- Пример истории 1 -->
+                    <article class="story-card featured" data-year="1978" data-role="graduate" data-kindergarten="Солнышко">
+                        <div class="story-badge">
+                            <span class="badge featured-badge">
+                                <i class="fas fa-star"></i> Избранное
+                            </span>
+                            <span class="badge year-badge">1978</span>
+                        </div>
+                        
+                        <div class="story-header">
+                            <div class="author-avatar">
+                                <img src="../images/users/user1.jpg" alt="Мария Иванова">
+                            </div>
+                            <div class="author-info">
+                                <h3 class="author-name">Мария Иванова</h3>
+                                <span class="author-role">
+                                    <i class="fas fa-graduation-cap"></i> Выпускница
+                                </span>
+                                <span class="story-kindergarten">
+                                    <i class="fas fa-school"></i> Д/с "Солнышко", с. Майя
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-content">
+                            <p>Помню, как мы в садике сажали первые деревья в нашем дворе. Каждому ребенку дали по саженцу березы. Моя береза до сих пор растет у входа в садик! Каждый раз, когда прохожу мимо, вспоминаю нашу воспитательницу Анну Петровну...</p>
+                            
+                            <div class="story-photos">
+                                <img src="../images/stories/1978-tree.jpg" alt="Береза у детского сада" class="story-photo">
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-meta">
+                                <span class="story-date">
+                                    <i class="far fa-calendar"></i> 15 мая 2023
+                                </span>
+                                <span class="story-reading-time">
+                                    <i class="far fa-clock"></i> 2 мин чтения
+                                </span>
+                            </div>
+                            
+                            <div class="story-actions">
+                                <button class="action-btn like-btn" data-likes="24">
+                                    <i class="far fa-heart"></i> <span>24</span>
+                                </button>
+                                <button class="action-btn comment-btn">
+                                    <i class="far fa-comment"></i> <span>5</span>
+                                </button>
+                                <button class="action-btn share-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Пример истории 2 -->
+                    <article class="story-card" data-year="1995" data-role="teacher" data-kindergarten="Чэчир">
+                        <div class="story-badge">
+                            <span class="badge year-badge">1995</span>
+                            <span class="badge role-badge">
+                                <i class="fas fa-chalkboard-teacher"></i> Воспитатель
+                            </span>
+                        </div>
+                        
+                        <div class="story-header">
+                            <div class="author-avatar">
+                                <div class="avatar-initials">ПС</div>
+                            </div>
+                            <div class="author-info">
+                                <h3 class="author-name">Петр Семенов</h3>
+                                <span class="author-role">
+                                    <i class="fas fa-chalkboard-teacher"></i> Воспитатель
+                                </span>
+                                <span class="story-kindergarten">
+                                    <i class="fas fa-school"></i> Д/с "Чэчир", с. Майя
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-content">
+                            <p>35 лет работаю воспитателем. Помню, как в 1995 году мы впервые организовали якутский национальный праздник "Ысыах" для детей. Дети были в национальных костюмах, учили якутские игры, пели песни на родном языке...</p>
+                            
+                            <blockquote class="story-quote">
+                                "Дети - как чистый лист бумаги. Что нарисуешь, то и останется."
+                            </blockquote>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-meta">
+                                <span class="story-date">
+                                    <i class="far fa-calendar"></i> 22 июня 2023
+                                </span>
+                                <span class="story-reading-time">
+                                    <i class="far fa-clock"></i> 3 мин чтения
+                                </span>
+                            </div>
+                            
+                            <div class="story-actions">
+                                <button class="action-btn like-btn" data-likes="42">
+                                    <i class="far fa-heart"></i> <span>42</span>
+                                </button>
+                                <button class="action-btn comment-btn">
+                                    <i class="far fa-comment"></i> <span>12</span>
+                                </button>
+                                <button class="action-btn share-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Пример истории 3 -->
+                    <article class="story-card" data-year="2010" data-role="parent" data-kindergarten="Берёзка">
+                        <div class="story-badge">
+                            <span class="badge year-badge">2010</span>
+                            <span class="badge role-badge">
+                                <i class="fas fa-user-friends"></i> Родитель
+                            </span>
+                        </div>
+                        
+                        <div class="story-header">
+                            <div class="author-avatar">
+                                <img src="../images/users/user3.jpg" alt="Анна Васильева">
+                            </div>
+                            <div class="author-info">
+                                <h3 class="author-name">Анна Васильева</h3>
+                                <span class="author-role">
+                                    <i class="fas fa-user-friends"></i> Родитель
+                                </span>
+                                <span class="story-kindergarten">
+                                    <i class="fas fa-school"></i> Д/с "Берёзка", с. Нижний Бестях
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-content">
+                            <p>Моя дочь пошла в садик в 2010 году. Помню её первые дни: как она плакала утром и как радостно бежала вечером показывать, что сделала на занятиях. Особенно запомнился проект "Моя семья" - дети создавали генеалогическое древо...</p>
+                            
+                            <div class="story-tags">
+                                <span class="tag">первый день</span>
+                                <span class="tag">адаптация</span>
+                                <span class="tag">семейный проект</span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-meta">
+                                <span class="story-date">
+                                    <i class="far fa-calendar"></i> 10 июля 2023
+                                </span>
+                                <span class="story-reading-time">
+                                    <i class="far fa-clock"></i> 2 мин чтения
+                                </span>
+                            </div>
+                            
+                            <div class="story-actions">
+                                <button class="action-btn like-btn" data-likes="18">
+                                    <i class="far fa-heart"></i> <span>18</span>
+                                </button>
+                                <button class="action-btn comment-btn">
+                                    <i class="far fa-comment"></i> <span>3</span>
+                                </button>
+                                <button class="action-btn share-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Пример истории 4 -->
+                    <article class="story-card" data-year="1982" data-role="graduate" data-kindergarten="Колокольчик">
+                        <div class="story-badge">
+                            <span class="badge year-badge">1982</span>
+                            <span class="badge vintage-badge">
+                                <i class="fas fa-history"></i> Винтаж
+                            </span>
+                        </div>
+                        
+                        <div class="story-header">
+                            <div class="author-avatar">
+                                <div class="avatar-initials">СН</div>
+                            </div>
+                            <div class="author-info">
+                                <h3 class="author-name">Сергей Николаев</h3>
+                                <span class="author-role">
+                                    <i class="fas fa-graduation-cap"></i> Выпускник
+                                </span>
+                                <span class="story-kindergarten">
+                                    <i class="fas fa-school"></i> Д/с "Колокольчик", с. Нерюктяйинск
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-content">
+                            <p>В 1982 году в нашем садике ещё не было компьютеров, но было много интересных занятий. Помню, как мы делали поделки из природных материалов, собирали гербарий, ходили на экскурсии в лес. Особенно любили занятия по лепке из глины...</p>
+                            
+                            <div class="story-photos">
+                                <img src="../images/stories/1982-crafts.jpg" alt="Поделки 1982 года" class="story-photo">
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-meta">
+                                <span class="story-date">
+                                    <i class="far fa-calendar"></i> 5 августа 2023
+                                </span>
+                                <span class="story-reading-time">
+                                    <i class="far fa-clock"></i> 4 мин чтения
+                                </span>
+                            </div>
+                            
+                            <div class="story-actions">
+                                <button class="action-btn like-btn" data-likes="31">
+                                    <i class="far fa-heart"></i> <span>31</span>
+                                </button>
+                                <button class="action-btn comment-btn">
+                                    <i class="far fa-comment"></i> <span>8</span>
+                                </button>
+                                <button class="action-btn share-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Пример истории 5 -->
+                    <article class="story-card" data-year="2022" data-role="parent" data-kindergarten="Умка">
+                        <div class="story-badge">
+                            <span class="badge year-badge">2022</span>
+                            <span class="badge role-badge">
+                                <i class="fas fa-user-friends"></i> Родитель
+                            </span>
+                        </div>
+                        
+                        <div class="story-header">
+                            <div class="author-avatar">
+                                <img src="../images/users/user5.jpg" alt="Ольга Петрова">
+                            </div>
+                            <div class="author-info">
+                                <h3 class="author-name">Ольга Петрова</h3>
+                                <span class="author-role">
+                                    <i class="fas fa-user-friends"></i> Родитель
+                                </span>
+                                <span class="story-kindergarten">
+                                    <i class="fas fa-school"></i> Д/с "Умка", с. Майя
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-content">
+                            <p>Современные детские сады сильно изменились! У моего сына в садике есть интерактивная доска, планшеты для образовательных игр, робототехника. Но самое главное - сохранилось теплое отношение воспитателей к детям...</p>
+                            
+                            <div class="story-tags">
+                                <span class="tag">цифровизация</span>
+                                <span class="tag">робототехника</span>
+                                <span class="tag">современное образование</span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-meta">
+                                <span class="story-date">
+                                    <i class="far fa-calendar"></i> 12 сентября 2023
+                                </span>
+                                <span class="story-reading-time">
+                                    <i class="far fa-clock"></i> 2 мин чтения
+                                </span>
+                            </div>
+                            
+                            <div class="story-actions">
+                                <button class="action-btn like-btn" data-likes="15">
+                                    <i class="far fa-heart"></i> <span>15</span>
+                                </button>
+                                <button class="action-btn comment-btn">
+                                    <i class="far fa-comment"></i> <span>2</span>
+                                </button>
+                                <button class="action-btn share-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Пример истории 6 -->
+                    <article class="story-card featured" data-year="1970" data-role="veteran" data-kindergarten="Ромашка">
+                        <div class="story-badge">
+                            <span class="badge featured-badge">
+                                <i class="fas fa-star"></i> Избранное
+                            </span>
+                            <span class="badge year-badge">1970</span>
+                            <span class="badge veteran-badge">
+                                <i class="fas fa-award"></i> Ветеран
+                            </span>
+                        </div>
+                        
+                        <div class="story-header">
+                            <div class="author-avatar">
+                                <div class="avatar-initials">ВК</div>
+                            </div>
+                            <div class="author-info">
+                                <h3 class="author-name">Валентина Кузьминична</h3>
+                                <span class="author-role">
+                                    <i class="fas fa-award"></i> Ветеран образования
+                                </span>
+                                <span class="story-kindergarten">
+                                    <i class="fas fa-school"></i> Д/с "Ромашка", с. Тюнгюлю
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="story-content">
+                            <p>Начала работать воспитателем в 1970 году. Зарплата была 90 рублей, но любви к детям - бесконечно. Помню, как зимой топили печку, дети сидели в валенках, но все равно пели песни и радовались жизни...</p>
+                            
+                            <blockquote class="story-quote">
+                                "За 50 лет работы я поняла: самое важное в воспитании - это любовь и терпение."
+                            </blockquote>
+                            
+                            <div class="story-photos">
+                                <img src="../images/stories/1970-kindergarten.jpg" alt="Детский сад в 1970 году" class="story-photo">
+                            </div>
+                        </div>
+                        
+                        <div class="story-footer">
+                            <div class="story-meta">
+                                <span class="story-date">
+                                    <i class="far fa-calendar"></i> 1 октября 2023
+                                </span>
+                                <span class="story-reading-time">
+                                    <i class="far fa-clock"></i> 5 мин чтения
+                                </span>
+                            </div>
+                            
+                            <div class="story-actions">
+                                <button class="action-btn like-btn" data-likes="67">
+                                    <i class="far fa-heart"></i> <span>67</span>
+                                </button>
+                                <button class="action-btn comment-btn">
+                                    <i class="far fa-comment"></i> <span>21</span>
+                                </button>
+                                <button class="action-btn share-btn">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" disabled>
+                        <i class="fas fa-chevron-left"></i> Назад
+                    </button>
+                    
+                    <div class="page-numbers">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span class="page-dots">...</span>
+                        <button class="page-btn">8</button>
+                    </div>
+                    
+                    <button class="pagination-btn next-btn">
+                        Вперед <i class="fas fa-chevron-right"></i>
+                    </button>
+                    
+                    <div class="page-info">
+                        Показано <span id="shown-stories">6</span> из <span id="total-stories-count">128</span> историй
+                    </div>
+                </div>
+            </section>
+
+            <!-- Боковая панель с популярными тегами -->
+            <aside class="stories-sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-tags"></i> Популярные теги</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag-cloud" data-tag="первый день">первый день</a>
+                        <a href="#" class="tag-cloud" data-tag="выпускной">выпускной</a>
+                        <a href="#" class="tag-cloud" data-tag="воспитатели">воспитатели</a>
+                        <a href="#" class="tag-cloud" data-tag="игры">игры</a>
+                        <a href="#" class="tag-cloud" data-tag="праздники">праздники</a>
+                        <a href="#" class="tag-cloud" data-tag="экскурсии">экскурсии</a>
+                        <a href="#" class="tag-cloud" data-tag="поделки">поделки</a>
+                        <a href="#" class="tag-cloud" data-tag="дружба">дружба</a>
+                        <a href="#" class="tag-cloud" data-tag="утренники">утренники</a>
+                        <a href="#" class="tag-cloud" data-tag="зимние забавы">зимние забавы</a>
+                        <a href="#" class="tag-cloud" data-tag="летний лагерь">летний лагерь</a>
+                        <a href="#" class="tag-cloud" data-tag="родители">родители</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-trophy"></i> Самые активные авторы</h3>
+                    <div class="top-authors">
+                        <div class="author-item">
+                            <div class="author-avatar small">
+                                <img src="../images/users/user1.jpg" alt="Мария Иванова">
+                            </div>
+                            <div class="author-details">
+                                <span class="author-name">Мария Иванова</span>
+                                <span class="author-stats">8 историй</span>
+                            </div>
+                        </div>
+                        <div class="author-item">
+                            <div class="author-avatar small">
+                                <div class="avatar-initials">ПС</div>
+                            </div>
+                            <div class="author-details">
+                                <span class="author-name">Петр Семенов</span>
+                                <span class="author-stats">6 историй</span>
+                            </div>
+                        </div>
+                        <div class="author-item">
+                            <div class="author-avatar small">
+                                <div class="avatar-initials">ВК</div>
+                            </div>
+                            <div class="author-details">
+                                <span class="author-name">Валентина К.</span>
+                                <span class="author-stats">5 историй</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-school"></i> Популярные детские сады</h3>
+                    <div class="top-kindergartens">
+                        <div class="kindergarten-item">
+                            <i class="fas fa-school"></i>
+                            <span class="kindergarten-name">"Солнышко", Майя</span>
+                            <span class="kindergarten-stats">24 истории</span>
+                        </div>
+                        <div class="kindergarten-item">
+                            <i class="fas fa-school"></i>
+                            <span class="kindergarten-name">"Чэчир", Майя</span>
+                            <span class="kindergarten-stats">18 историй</span>
+                        </div>
+                        <div class="kindergarten-item">
+                            <i class="fas fa-school"></i>
+                            <span class="kindergarten-name">"Берёзка", Нижний Бестях</span>
+                            <span class="kindergarten-stats">15 историй</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section call-to-action">
+                    <h3><i class="fas fa-pen"></i> Ваша история важна!</h3>
+                    <p>Поделитесь своими воспоминаниями о детском саде. Ваша история поможет сохранить память для будущих поколений.</p>
+                    <a href="../pages/add-story.html" class="btn btn-primary btn-block">
+                        <i class="fas fa-plus-circle"></i> Написать историю
+                    </a>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Модальное окно для детального просмотра истории -->
+        <div id="story-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-story-title">Детали истории</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body" id="modal-story-content">
+                    <!-- Контент будет загружаться динамически -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Футер -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Digital-талисман</h4>
+                    <p>Собираем и сохраняем историю дошкольного образования Мегино-Кангаласского улуса</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <a href="../index.html">Главная</a>
+                    <a href="../pages/history.html">История</a>
+                    <a href="../pages/stories.html">Истории</a>
+                    <a href="../pages/benefits.html">Польза образования</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Участие</h4>
+                    <a href="../pages/add-story.html">Добавить историю</a>
+                    <a href="../pages/contacts.html">Контакты</a>
+                    <a href="../pages/about.html">О проекте</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Digital-талисман. 100 лет дошкольного образования Мегино-Кангаласского улуса</p>
+                <p>Республика Саха (Якутия)</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="../js/mascot.js"></script>
+    <script src="../js/stories-manager.js"></script>
+    <script>
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация менеджера историй
+            if (typeof StoriesManager !== 'undefined') {
+                new StoriesManager();
+            }
+            
+            // Инициализация талисмана
+            if (typeof DigitalMascot !== 'undefined') {
+                new DigitalMascot();
+            }
+            
+            // Навигация на страницу добавления истории
+            document.getElementById('add-story-btn')?.addEventListener('click', function() {
+                window.location.href = '../pages/add-story.html';
+            });
+            
+            // Обновление статистики
+            updateStatistics();
+            
+            // Загрузка историй
+            loadStories();
+        });
+        
+        function updateStatistics() {
+            // Здесь будет загрузка реальной статистики
+            document.getElementById('total-stories').textContent = '128';
+            document.getElementById('total-authors').textContent = '89';
+            document.getElementById('total-kindergartens').textContent = '23';
+            document.getElementById('oldest-year').textContent = '1965';
+        }
+        
+        function loadStories() {
+            // Здесь будет загрузка историй из API или локального хранилища
+            console.log('Загрузка историй...');
+        }
+    </script>
+</body>
+</html>

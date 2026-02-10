@@ -1,0 +1,1841 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить историю - Digital-талисман</title>
+    <style>
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2.5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Основной контент */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 40px;
+            margin-bottom: 4rem;
+        }
+
+        @media (max-width: 992px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Форма */
+        .form-container {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12);
+        }
+
+        .form-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .form-subtitle {
+            color: #7f8c8d;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Группы формы */
+        .form-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8f4f8;
+        }
+
+        .section-title i {
+            color: #3498db;
+            font-size: 1.5rem;
+        }
+
+        /* Поля формы */
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.05rem;
+        }
+
+        .form-label .required {
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237f8c8d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 16px;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        /* Текстовое поле */
+        .textarea-wrapper {
+            position: relative;
+        }
+
+        .form-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            line-height: 1.7;
+            resize: vertical;
+            transition: all 0.3s;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+        }
+
+        .char-counter {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 0.9rem;
+            color: #95a5a6;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* Загрузка фото */
+        .photo-upload {
+            border: 3px dashed #e0e0e0;
+            border-radius: 15px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .photo-upload:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .upload-icon {
+            font-size: 3.5rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .upload-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .photo-preview {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .preview-image {
+            max-width: 300px;
+            max-height: 200px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .remove-photo {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .remove-photo:hover {
+            background: #c0392b;
+        }
+
+        /* Чекбоксы и радио */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .checkbox-item {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .checkbox-label:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .checkbox-label input {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Кнопки формы */
+        .form-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        @media (max-width: 576px) {
+            .form-buttons {
+                flex-direction: column;
+            }
+        }
+
+        .submit-btn {
+            flex: 1;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .preview-btn {
+            flex: 1;
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preview-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        .draft-btn {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .draft-btn:hover {
+            background: #7f8c8d;
+        }
+
+        /* Боковая панель */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .sidebar-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Подсказки */
+        .tips-list {
+            list-style: none;
+        }
+
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tip-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .tip-icon {
+            width: 40px;
+            height: 40px;
+            background: #e8f4f8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3498db;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .tip-content h4 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .tip-content p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Примеры историй */
+        .example-story {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .example-story:last-child {
+            margin-bottom: 0;
+        }
+
+        .example-author {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .example-text {
+            color: #555;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Талисман */
+        .mascot-card {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mascot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .mascot-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.2);
+            overflow: hidden;
+            background: linear-gradient(45deg, #8b4513, #d2691e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .mascot-message {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Футер */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #95a5a6;
+        }
+
+        /* Модальное окно предпросмотра */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .preview-story {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #e8f4f8;
+        }
+
+        .preview-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .preview-info h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .preview-meta {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        .preview-content {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+
+        .preview-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .preview-tag {
+            background: #e8f4f8;
+            color: #3498db;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            border-radius: 0 0 25px 25px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        /* Уведомления */
+        .notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            color: white;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 1100;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            animation: notificationSlideIn 0.3s ease;
+        }
+
+        @keyframes notificationSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Загрузка */
+        .loading {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            z-index: 10;
+            border-radius: 25px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 2rem;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            header {
+                padding: 2rem 0;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .sidebar-card {
+                padding: 1.5rem;
+            }
+            
+            .form-buttons {
+                flex-direction: column;
+            }
+            
+            .submit-btn,
+            .preview-btn {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Уведомление -->
+    <div id="notification" class="notification" style="display: none;">
+        <span id="notification-message"></span>
+        <button class="notification-close" onclick="hideNotification()">×</button>
+    </div>
+
+    <!-- Модальное окно предпросмотра -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">👁️ Предпросмотр вашей истории</h2>
+                <button class="modal-close" onclick="closePreview()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-story">
+                    <div class="preview-header">
+                        <div class="preview-avatar" id="preview-avatar">?</div>
+                        <div class="preview-info">
+                            <h3 id="preview-author">Имя автора</h3>
+                            <div class="preview-meta">
+                                <span id="preview-role">Роль</span> • 
+                                <span id="preview-kindergarten">Детский сад</span> • 
+                                <span id="preview-year">Год</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-content" id="preview-content">
+                        Здесь появится текст вашей истории...
+                    </div>
+                    
+                    <div class="preview-tags" id="preview-tags">
+                        <!-- Теги будут добавлены динамически -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="draft-btn" onclick="closePreview()">Закрыть</button>
+                <button class="submit-btn" onclick="submitStory()">✅ Опубликовать историю</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Шапка -->
+        <header>
+            <div class="header-content animate">
+                <h1>Поделитесь своей историей</h1>
+                <p class="subtitle">Расскажите о теплых воспоминаниях, любимых воспитателях и веселых моментах из детского сада</p>
+                <a href="../index.html" class="back-btn">← Вернуться на главную</a>
+            </div>
+        </header>
+
+        <!-- Основной контент -->
+        <div class="content-wrapper">
+            <!-- Левая колонка - Форма -->
+            <main>
+                <div class="form-container animate">
+                    <!-- Индикатор загрузки -->
+                    <div class="loading" id="formLoading">
+                        <div class="spinner"></div>
+                        <p>Отправка истории...</p>
+                    </div>
+
+                    <h2 class="form-title">✍️ Новая история</h2>
+                    <p class="form-subtitle">Заполните форму ниже, чтобы поделиться своими воспоминаниями</p>
+
+                    <!-- Секция 1: Об авторе -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i>👤</i>
+                            О себе
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Ваше имя
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" 
+                                       class="form-input" 
+                                       id="authorName" 
+                                       placeholder="Например: Мария Иванова"
+                                       maxlength="100">
+                                <div class="form-hint" style="color: #95a5a6; font-size: 0.9rem; margin-top: 8px;">
+                                    Можно указать только имя или инициалы
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Ваша роль
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-select" id="authorRole">
+                                    <option value="">Выберите роль</option>
+                                    <option value="graduate">Выпускник детского сада</option>
+                                    <option value="parent">Родитель</option>
+                                    <option value="teacher">Воспитатель/педагог</option>
+                                    <option value="veteran">Ветеран образования</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Электронная почта</label>
+                                <input type="email" 
+                                       class="form-input" 
+                                       id="authorEmail"
+                                       placeholder="email@example.com">
+                                <div class="form-hint" style="color: #95a5a6; font-size: 0.9rem; margin-top: 8px;">
+                                    Только для связи, не публикуется
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Номер телефона (необязательно)</label>
+                                <input type="tel" 
+                                       class="form-input" 
+                                       id="authorPhone"
+                                       placeholder="+7 (XXX) XXX-XX-XX">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Секция 2: О детском саде -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i>🏫</i>
+                            О детском саде
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Название детского сада
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-select" id="kindergarten">
+                                    <option value="">Выберите детский сад</option>
+                                    <option value="solнышко">"Солнышко", с. Майя</option>
+                                    <option value="chechir">"Чэчир", с. Майя</option>
+                                    <option value="beryozka">"Берёзка", с. Нижний Бестях</option>
+                                    <option value="kolokolchik">"Колокольчик", с. Нерюктяйинск</option>
+                                    <option value="romashka">"Ромашка", с. Тюнгюлю</option>
+                                    <option value="umka">"Умка", с. Майя</option>
+                                    <option value="other">Другой детский сад</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Год события
+                                    <span class="required">*</span>
+                                </label>
+                                <select class="form-select" id="eventYear">
+                                    <option value="">Выберите год</option>
+                                    <option value="1960">1960-е и ранее</option>
+                                    <option value="1970">1970-е</option>
+                                    <option value="1980">1980-е</option>
+                                    <option value="1990">1990-е</option>
+                                    <option value="2000">2000-е</option>
+                                    <option value="2010">2010-е</option>
+                                    <option value="2020">2020-е</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Населенный пункт</label>
+                            <select class="form-select" id="location">
+                                <option value="maya">с. Майя</option>
+                                <option value="nizhniy-bestyah">с. Нижний Бестях</option>
+                                <option value="neruktyayinsk">с. Нерюктяйинск</option>
+                                <option value="tyungyulyu">с. Тюнгюлю</option>
+                                <option value="khaptagay">с. Хаптагай</option>
+                                <option value="other">Другой населенный пункт</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Секция 3: История -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i>📖</i>
+                            Ваша история
+                        </h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                Заголовок истории
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" 
+                                   class="form-input" 
+                                   id="storyTitle"
+                                   placeholder="Например: Мой первый день в детском саду"
+                                   maxlength="150">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">
+                                Текст истории
+                                <span class="required">*</span>
+                            </label>
+                            <div class="textarea-wrapper">
+                                <textarea class="form-textarea" 
+                                          id="storyText" 
+                                          placeholder="Расскажите свою историю подробно... 
+Например: Помню, как в первый день я не хотел отпускать маму... 
+Воспитательница Анна Петровна взяла меня за руку и показала самые интересные игрушки..."
+                                          maxlength="5000"></textarea>
+                                <div class="char-counter">
+                                    <span id="charCount">0</span>/5000 символов
+                                </div>
+                            </div>
+                            <div class="form-hint" style="color: #95a5a6; font-size: 0.9rem; margin-top: 8px;">
+                                Рекомендуемый объем: 300-1000 символов
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Теги (выберите до 5)</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="первый день">
+                                        <span>первый день</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="воспитатели">
+                                        <span>воспитатели</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="дружба">
+                                        <span>дружба</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="праздники">
+                                        <span>праздники</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="игры">
+                                        <span>игры</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="экскурсии">
+                                        <span>экскурсии</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="поделки">
+                                        <span>поделки</span>
+                                    </label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="tags" value="утренники">
+                                        <span>утренники</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Секция 4: Фотографии -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i>📷</i>
+                            Фотографии (необязательно)
+                        </h3>
+                        
+                        <div class="form-group">
+                            <div class="photo-upload" onclick="document.getElementById('photoInput').click()">
+                                <div class="upload-icon">📤</div>
+                                <p class="upload-text">Перетащите сюда фото или нажмите для загрузки</p>
+                                <button type="button" class="upload-btn">Выбрать фото</button>
+                                <p style="color: #95a5a6; font-size: 0.9rem; margin-top: 10px;">
+                                    Максимальный размер: 5 MB • Форматы: JPG, PNG
+                                </p>
+                            </div>
+                            
+                            <input type="file" 
+                                   id="photoInput" 
+                                   accept="image/*" 
+                                   style="display: none;"
+                                   onchange="handlePhotoUpload(event)">
+                            
+                            <div class="photo-preview" id="photoPreview">
+                                <img class="preview-image" id="previewImage" src="" alt="Предпросмотр">
+                                <button type="button" class="remove-photo" onclick="removePhoto()">❌ Удалить фото</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Секция 5: Согласие -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i>✅</i>
+                            Согласие на публикацию
+                        </h3>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label" style="border: none; padding: 0;">
+                                <input type="checkbox" id="privacyConsent" style="width: 20px; height: 20px;">
+                                <span>
+                                    Я даю согласие на обработку моих персональных данных и публикацию истории на сайте "Digital-талисман" в рамках проекта "100 лет дошкольного образования Мегино-Кангаласского улуса".
+                                    <span class="required">*</span>
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label" style="border: none; padding: 0;">
+                                <input type="checkbox" id="emailConsent">
+                                <span>
+                                    Я хочу получать уведомления о новых историях и событиях проекта на указанную электронную почту
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Кнопки формы -->
+                    <div class="form-buttons">
+                        <button type="button" class="draft-btn" onclick="saveDraft()">
+                            💾 Сохранить черновик
+                        </button>
+                        <button type="button" class="preview-btn" onclick="showPreview()">
+                            👁️ Предпросмотр
+                        </button>
+                        <button type="button" class="submit-btn" id="submitBtn" onclick="validateForm()">
+                            📤 Отправить историю
+                            <span id="submitIcon">→</span>
+                        </button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Правая колонка - Боковая панель -->
+            <aside class="sidebar">
+                <!-- Карточка с подсказками -->
+                <div class="sidebar-card animate">
+                    <h3 class="sidebar-title">💡 Как написать хорошую историю</h3>
+                    <ul class="tips-list">
+                        <li class="tip-item">
+                            <div class="tip-icon">1</div>
+                            <div class="tip-content">
+                                <h4>Будьте конкретны</h4>
+                                <p>Опишите конкретные события, диалоги, эмоции</p>
+                            </div>
+                        </li>
+                        <li class="tip-item">
+                            <div class="tip-icon">2</div>
+                            <div class="tip-content">
+                                <h4>Расскажите о людях</h4>
+                                <p>Упомяните воспитателей, друзей, их имена</p>
+                            </div>
+                        </li>
+                        <li class="tip-item">
+                            <div class="tip-icon">3</div>
+                            <div class="tip-content">
+                                <h4>Опишите детали</h4>
+                                <p>Какие были игрушки, занятия, праздники?</p>
+                            </div>
+                        </li>
+                        <li class="tip-item">
+                            <div class="tip-icon">4</div>
+                            <div class="tip-content">
+                                <h4>Поделитесь эмоциями</h4>
+                                <p>Что вы чувствовали тогда? Что чувствуете сейчас?</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Карточка с примерами -->
+                <div class="sidebar-card animate">
+                    <h3 class="sidebar-title">📚 Примеры хороших историй</h3>
+                    
+                    <div class="example-story">
+                        <div class="example-author">Мария, выпускница 1978 г.</div>
+                        <div class="example-text">"Помню, как мы сажали березы у садика. Моя до сих пор растет..."</div>
+                    </div>
+                    
+                    <div class="example-story">
+                        <div class="example-author">Петр, воспитатель</div>
+                        <div class="example-text">"В 1995 году мы впервые провели Ысыах для детей. Они были в национальных костюмах..."</div>
+                    </div>
+                    
+                    <div class="example-story">
+                        <div class="example-author">Анна, родитель</div>
+                        <div class="example-text">"Моя дочь плакала в первый день, а через неделю не хотела уходить домой..."</div>
+                    </div>
+                </div>
+
+                <!-- Карточка с талисманом -->
+                <div class="sidebar-card mascot-card animate">
+                    <div class="mascot-image">🐴</div>
+                    <p class="mascot-message">Я внимательно слушаю вашу историю! Каждое воспоминание важно для сохранения нашей общей памяти.</p>
+                    <button class="upload-btn" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);" onclick="mascotEncourage()">
+                        💬 Подбодрите меня!
+                    </button>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Футер -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Digital-талисман</h3>
+                        <p>Собираем и сохраняем историю дошкольного образования Мегино-Кангаласского улуса</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Навигация</h3>
+                        <ul class="footer-links">
+                            <li><a href="../index.html">🏠 Главная</a></li>
+                            <li><a href="history.html">📜 История</a></li>
+                            <li><a href="stories.html">📖 Истории</a></li>
+                            <li><a href="benefits.html">🎯 Польза образования</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Участие</h3>
+                        <ul class="footer-links">
+                            <li><a href="add-story.html">✍️ Добавить историю</a></li>
+                            <li><a href="contacts.html">📞 Контакты</a></li>
+                            <li><a href="about.html">ℹ️ О проекте</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>© 2024 Digital-талисман. 100 лет дошкольного образования Мегино-Кангаласского улуса</p>
+                    <p>Республика Саха (Якутия)</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Страница добавления истории загружена');
+            
+            // Инициализация счетчика символов
+            initCharCounter();
+            
+            // Загрузка черновика если есть
+            loadDraft();
+            
+            // Инициализация валидации
+            initValidation();
+            
+            // Анимация элементов
+            animateElements();
+        });
+
+        // Анимация элементов
+        function animateElements() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            
+            // Устанавливаем начальные стили
+            document.querySelectorAll('.animate').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+        }
+
+        // Счетчик символов
+        function initCharCounter() {
+            const textarea = document.getElementById('storyText');
+            const counter = document.getElementById('charCount');
+            
+            textarea.addEventListener('input', function() {
+                const length = this.value.length;
+                counter.textContent = length;
+                
+                // Меняем цвет при приближении к лимиту
+                if (length > 4500) {
+                    counter.style.color = '#e74c3c';
+                } else if (length > 4000) {
+                    counter.style.color = '#f39c12';
+                } else {
+                    counter.style.color = '#95a5a6';
+                }
+            });
+        }
+
+        // Загрузка фото
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Проверка размера файла (5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showNotification('Файл слишком большой! Максимальный размер: 5 MB', 'error');
+                return;
+            }
+            
+            // Проверка типа файла
+            if (!file.type.match('image.*')) {
+                showNotification('Пожалуйста, выберите изображение (JPG, PNG)', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('photoPreview');
+                const previewImage = document.getElementById('previewImage');
+                
+                previewImage.src = e.target.result;
+                preview.style.display = 'block';
+                
+                showNotification('Фото успешно загружено!', 'success');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function removePhoto() {
+            const preview = document.getElementById('photoPreview');
+            const fileInput = document.getElementById('photoInput');
+            
+            preview.style.display = 'none';
+            fileInput.value = '';
+            
+            showNotification('Фото удалено', 'info');
+        }
+
+        // Валидация формы
+        function initValidation() {
+            const requiredFields = [
+                'authorName',
+                'authorRole',
+                'kindergarten',
+                'eventYear',
+                'storyTitle',
+                'storyText',
+                'privacyConsent'
+            ];
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('change', function() {
+                        validateField(this);
+                    });
+                    
+                    if (field.type !== 'checkbox') {
+                        field.addEventListener('blur', function() {
+                            validateField(this);
+                        });
+                    }
+                }
+            });
+        }
+
+        function validateField(field) {
+            if (field.type === 'checkbox') {
+                if (!field.checked && field.id === 'privacyConsent') {
+                    field.parentElement.style.color = '#e74c3c';
+                    return false;
+                }
+                field.parentElement.style.color = '';
+                return true;
+            }
+            
+            if (!field.value.trim()) {
+                field.style.borderColor = '#e74c3c';
+                return false;
+            }
+            
+            field.style.borderColor = '#2ecc71';
+            return true;
+        }
+
+        function validateForm() {
+            const requiredFields = [
+                'authorName',
+                'authorRole',
+                'kindergarten',
+                'eventYear',
+                'storyTitle',
+                'storyText'
+            ];
+            
+            let isValid = true;
+            const errors = [];
+            
+            // Проверка обязательных полей
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field || !field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#e74c3c';
+                    errors.push("Заполните поле: ${field.previousElementSibling?.textContent || fieldId}");
+                } else {
+                    field.style.borderColor = '#2ecc71';
+                }
+            });
+            
+            // Проверка согласия
+            const consent = document.getElementById('privacyConsent');
+            if (!consent.checked) {
+                isValid = false;
+                consent.parentElement.style.color = '#e74c3c';
+                errors.push('Необходимо согласие на обработку данных');
+            } else {
+                consent.parentElement.style.color = '';
+            }
+            
+            // Проверка длины текста
+            const storyText = document.getElementById('storyText').value;
+            if (storyText.length < 50) {
+                isValid = false;
+                errors.push('Текст истории должен содержать минимум 50 символов');
+            }
+            
+            if (!isValid) {
+                showNotification('Исправьте ошибки в форме: ' + errors.join(', '), 'error');
+                return false;
+            }
+            
+            // Если все ок - показываем предпросмотр
+            showPreview();
+            return true;
+        }
+
+        // Предпросмотр истории
+        function showPreview() {
+            // Собираем данные из формы
+            const authorName = document.getElementById('authorName').value || 'Аноним';
+            const authorRole = getRoleText(document.getElementById('authorRole').value);
+            const kindergarten = document.getElementById('kindergarten').options[document.getElementById('kindergarten').selectedIndex].text;
+            const eventYear = document.getElementById('eventYear').value || 'Не указан';
+            const storyText = document.getElementById('storyText').value;
+            
+            // Обновляем предпросмотр
+            document.getElementById('preview-author').textContent = authorName;
+            document.getElementById('preview-role').textContent = authorRole;
+            document.getElementById('preview-kindergarten').textContent = kindergarten;
+            document.getElementById('preview-year').textContent = eventYear + ' год';
+            document.getElementById('preview-content').textContent = storyText;
+            
+            // Создаем аватар из инициалов
+            const initials = authorName.split(' ').map(word => word[0]).join('').toUpperCase() || '?';
+            document.getElementById('preview-avatar').textContent = initials;
+            
+            // Добавляем теги
+            const tagsContainer = document.getElementById('preview-tags');
+            tagsContainer.innerHTML = '';
+            const selectedTags = Array.from(document.querySelectorAll('input[name="tags"]:checked'))
+                .map(cb => cb.value);
+            
+            selectedTags.forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'preview-tag';
+                tagElement.textContent = tag;
+                tagsContainer.appendChild(tagElement);
+            });
+            
+            // Показываем модальное окно
+            document.getElementById('previewModal').style.display = 'flex';
+        }
+
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        function getRoleText(roleValue) {
+            const roles = {
+                'graduate': 'Выпускник',
+                'parent': 'Родитель',
+                'teacher': 'Воспитатель',
+                'veteran': 'Ветеран образования',
+                'other': 'Участник'
+            };
+            return roles[roleValue] || 'Участник';
+        }
+
+        // Отправка истории
+        function submitStory() {
+            const loading = document.getElementById('formLoading');
+            const submitBtn = document.getElementById('submitBtn');
+            const submitIcon = document.getElementById('submitIcon');
+            
+            // Показываем индикатор загрузки
+            loading.style.display = 'flex';
+            submitBtn.disabled = true;
+            submitIcon.textContent = '⏳';
+            
+            // Собираем данные формы
+            const formData = {
+                author: document.getElementById('authorName').value,
+                role: document.getElementById('authorRole').value,
+                email: document.getElementById('authorEmail').value,
+                kindergarten: document.getElementById('kindergarten').value,
+                year: document.getElementById('eventYear').value,
+                location: document.getElementById('location').value,
+                title: document.getElementById('storyTitle').value,
+                text: document.getElementById('storyText').value,
+                tags: Array.from(document.querySelectorAll('input[name="tags"]:checked')).map(cb => cb.value),
+                photo: document.getElementById('previewImage').src || null,
+                consent: document.getElementById('privacyConsent').checked,
+                timestamp: new Date().toISOString(),
+                id: 'story_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+            };
+            
+            // Имитация отправки на сервер
+            setTimeout(() => {
+                // Сохраняем в localStorage (в реальном приложении - отправка на сервер)
+                saveStory(formData);
+                
+                // Скрываем индикатор загрузки
+                loading.style.display = 'none';
+                submitBtn.disabled = false;
+                submitIcon.textContent = '→';
+                
+                // Закрываем модальное окно
+                closePreview();
+                
+                // Показываем уведомление об успехе
+                showNotification('Ваша история успешно отправлена! После модерации она появится на сайте.', 'success');
+                
+                // Очищаем форму
+                resetForm();
+                
+                // Сохраняем в историю отправленных историй
+                addToSentStories(formData);
+                
+                // Перенаправляем на страницу историй через 3 секунды
+                setTimeout(() => {
+                    window.location.href = 'stories.html';
+                }, 3000);
+                
+            }, 2000);
+        }
+
+        function saveStory(story) {
+            // Сохраняем в localStorage
+            const stories = JSON.parse(localStorage.getItem('userStories') || '[]');
+            stories.push(story);
+            localStorage.setItem('userStories', JSON.stringify(stories));
+            
+            // Также сохраняем для офлайн-синхронизации
+            const pendingStories = JSON.parse(localStorage.getItem('pendingStories') || '[]');
+            pendingStories.push(story);
+            localStorage.setItem('pendingStories', JSON.stringify(pendingStories));
+            
+            console.log('История сохранена:', story);
+        }
+
+        function addToSentStories(story) {
+            const sentStories = JSON.parse(localStorage.getItem('sentStories') || '[]');
+            sentStories.push({
+                id: story.id,
+                title: story.title,
+                date: new Date().toLocaleDateString('ru-RU'),
+                status: 'pending'
+            });
+            localStorage.setItem('sentStories', JSON.stringify(sentStories));
+        }
+
+        // Сохранение черновика
+        function saveDraft() {
+            const draft = {
+                author: document.getElementById('authorName').value,
+                role: document.getElementById('authorRole').value,
+                email: document.getElementById('authorEmail').value,
+                kindergarten: document.getElementById('kindergarten').value,
+                year: document.getElementById('eventYear').value,
+                location: document.getElementById('location').value,
+                title: document.getElementById('storyTitle').value,
+                text: document.getElementById('storyText').value,
+                tags: Array.from(document.querySelectorAll('input[name="tags"]:checked')).map(cb => cb.value),
+                lastSaved: new Date().toISOString()
+            };
+            
+            localStorage.setItem('storyDraft', JSON.stringify(draft));
+            showNotification('Черновик сохранен!', 'success');
+            
+            // Анимация кнопки
+            const btn = event.target;
+            btn.innerHTML = '✅ Сохранено!';
+            setTimeout(() => {
+                btn.innerHTML = '💾 Сохранить черновик';
+            }, 2000);
+        }
+
+        function loadDraft() {
+            const draft = JSON.parse(localStorage.getItem('storyDraft'));
+            if (!draft) return;
+            
+            // Заполняем поля из черновика
+            if (draft.author) document.getElementById('authorName').value = draft.author;
+            if (draft.role) document.getElementById('authorRole').value = draft.role;
+            if (draft.email) document.getElementById('authorEmail').value = draft.email;
+            if (draft.kindergarten) document.getElementById('kindergarten').value = draft.kindergarten;
+            if (draft.year) document.getElementById('eventYear').value = draft.year;
+            if (draft.location) document.getElementById('location').value = draft.location;
+            if (draft.title) document.getElementById('storyTitle').value = draft.title;
+            if (draft.text) document.getElementById('storyText').value = draft.text;
+            
+            // Восстанавливаем теги
+            if (draft.tags && Array.isArray(draft.tags)) {
+                document.querySelectorAll('input[name="tags"]').forEach(cb => {
+                    cb.checked = draft.tags.includes(cb.value);
+                });
+            }
+            
+            // Обновляем счетчик символов
+            document.getElementById('charCount').textContent = draft.text?.length || 0;
+            
+            showNotification('Загружен последний черновик от ' + new Date(draft.lastSaved).toLocaleString('ru-RU'), 'info');
+        }
+
+        // Сброс формы
+        function resetForm() {
+            document.getElementById('authorName').value = '';
+            document.getElementById('authorRole').value = '';
+            document.getElementById('authorEmail').value = '';
+            document.getElementById('authorPhone').value = '';
+            document.getElementById('kindergarten').value = '';
+            document.getElementById('eventYear').value = '';
+            document.getElementById('location').value = 'maya';
+            document.getElementById('storyTitle').value = '';
+            document.getElementById('storyText').value = '';
+            document.getElementById('photoPreview').style.display = 'none';
+            document.getElementById('photoInput').value = '';
+            document.getElementById('privacyConsent').checked = false;
+            document.getElementById('emailConsent').checked = false;
+            
+            // Сбрасываем теги
+            document.querySelectorAll('input[name="tags"]').forEach(cb => {
+                cb.checked = false;
+            });
+            
+            // Сбрасываем счетчик
+            document.getElementById('charCount').textContent = '0';
+            
+            // Удаляем черновик
+            localStorage.removeItem('storyDraft');
+        }
+
+        // Уведомления
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const messageEl = document.getElementById('notification-message');
+            
+            messageEl.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'flex';
+            
+            // Автоматическое скрытие через 5 секунд
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+
+        function hideNotification() {
+            const notification = document.getElementById('notification');
+            notification.style.display = 'none';
+        }
+
+        // Функции талисмана
+        function mascotEncourage() {
+            const messages = [
+                "Вы пишете замечательную историю!",
+                "Каждое воспоминание важно для нашей общей памяти.",
+                "Спасибо, что делитесь своими теплыми моментами!",
+                "Ваша история вдохновит других на воспоминания.",
+                "Детский сад - это место, где рождается дружба на всю жизнь!"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            showNotification(`🐴 Талисман говорит: "${randomMessage}"`, 'info');
+        }
+
+        // Обработка клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePreview();
+                hideNotification();
+            }
+            
+            // Ctrl+S для сохранения черновика
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveDraft();
+            }
+            
+            // Ctrl+Enter для отправки
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                validateForm();
+            }
+        });
+
+        // Автосохранение при изменении формы
+        let saveTimeout;
+        document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(el => {
+            el.addEventListener('input', function() {
+                clearTimeout(saveTimeout);
+                saveTimeout = setTimeout(() => {
+                    saveDraft();
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

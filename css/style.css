@@ -1,0 +1,797 @@
+﻿/* Основные стили */
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --light-color: #f8f9fa;
+  --dark-color: #2c3e50;
+  --text-color: #333;
+  --border-radius: 10px;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Шапка */
+.app-header {
+    background: linear-gradient(135deg, var(--primary-color), #1a252f);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+
+    align-items: center;
+}
+
+    .app-header.logo {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: transparent;
+        justify-items: center; /* Выравнивание содержимого по центру колонок */
+        align-items: center; /* Вертикальное выравнивание */
+    }
+
+.header-content h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  text-align:center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+.header-content p {
+    text-align: center;
+}
+
+
+.header-logo img {
+  height: auto;
+  max-width: 130px;
+  margin-left: 1rem;
+}
+
+/* Кнопки */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--light-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-accent {
+  background: var(--accent-color);
+  color: white;
+}
+
+.btn-accent:hover {
+  background: #c0392b;
+}
+
+/* Основной контент */
+.main-content {
+  padding: 2rem 0;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.hero-section h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Карточки особенностей */
+.features-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* Статистика */
+.quick-stats {
+  background: linear-gradient(135deg, var(--secondary-color), #2c3e50);
+  color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-item {
+  padding: 1rem;
+}
+
+.stat-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Футер */
+.app-footer {
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  margin-top: 3rem;
+}
+
+.footer-links {
+  margin-top: 1rem;
+}
+
+.footer-links a,
+.footer-links button {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.footer-links a:hover,
+.footer-links button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .app-header {
+        display: block;
+        text-align: center;
+        padding: 1rem;
+    }
+    .header-logo {
+        display: inline-block;
+        width: 100px;
+        margin: 0 10px;
+        vertical-align: middle;
+    }
+
+    .header-logo img {
+        max-width: 100px;
+        margin: 0 auto 1rem;
+        display: block;
+    }
+
+    .header-content {
+        display: block;
+        margin-top: 1rem;
+    }
+        .header-content h1 {
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+
+
+
+    .header-content p {
+        font-size: 0.9rem;
+    }
+
+    /* Убираем лишние отступы */
+    .app-container {
+        padding: 0 10px;
+    }
+
+    /* Программа - исправляем отступы и структуру */
+    .program-event-pane {
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: hidden;
+    }
+
+    .program-event-pane-columns {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+
+    .program-event-text.time {
+        background: #f0f0f0;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        /*display: inline-block;*/
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .program-event-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+
+    .program-event-text.title {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .program-event-place-text {
+        margin-left: 0;
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    /* KMO секция */
+    .kmo-pane {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .kmo-section {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .kmo-card {
+        padding: 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+    }
+
+    .kmo-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    /* Видео секция */
+    .video-container {
+        padding-left: 0;
+        padding-right: 0;
+        margin: 1rem 0;
+    }
+
+    .video-content-text {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
+
+    .video-section {
+        padding: 1rem 0.5rem;
+    }
+
+    /* Основные кнопки */
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+
+    /* Даты событий */
+    .program-event-date-pane {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 15px 10px;
+        border-width: 1px;
+    }
+
+    .program-event-date-text {
+        font-size: 1rem;
+        padding: 0 10px;
+        line-height: 1.4;
+    }
+
+    /* Герой-секция */
+    .hero-section {
+        padding: 1.5rem 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+        .hero-section h2 {
+            font-size: 1.5rem;
+        }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    /* Линии */
+    .line-top {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    /* Уменьшаем общие отступы */
+    .main-content {
+        padding: 1rem 0;
+    }
+
+    .program-event-pane-columns-in-kmo {
+        grid-template-columns: 1fr;
+        gap: 3px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #eee;
+    }
+           
+}
+
+/* Дополнительные улучшения для очень маленьких экранов */
+@media (max-width: 480px) {
+    .program-event-pane-columns {
+        grid-template-columns: 1fr 5fr 2fr;
+    }
+    .program-event-pane-columns-in-kmo {
+        padding: 10px;
+    }
+ 
+
+    .program-event-text.time {
+        
+        font-size: 0.85rem;
+    }
+
+    .header-content h1 {
+        font-size: 1.1rem;
+    }
+
+    .kmo-card {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .kmo-title-pane {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .program-event-date-text p {
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+    }
+}
+
+.program-event-text,
+.kmo-card p,
+.header-content h1 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Состояния офлайн */
+.offline-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #e74c3c;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.online-notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #27ae60;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+}
+
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.toggle-btn {
+    padding: 15px 30px;
+    background: #4a76a8;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 200px;
+}
+
+.toggle-btn:hover {
+    background: #3a6698;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 118, 168, 0.3);
+}
+
+.toggle-btn:active {
+    transform: translateY(0);
+}
+
+.status {
+    font-size: 16px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-on {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.status-off {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+/*@media (max-width: 768px) {
+    .video-container iframe {
+        height: 300px;
+    }
+    
+    .toggle-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}*/
+
+/*Видео Обращение*/
+
+.video-section {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.video-container {
+    text-align: center;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    margin-bottom: 2rem;
+    margin-top:2rem;
+}
+
+.video-container iframe {
+    aspect-ratio: 16 / 9;
+    transition: opacity 0.3s ease;
+}
+
+.video-container.hidden iframe {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+.kmo-title-pane {
+    text-align: center;
+    padding: 1rem;       
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.kmo-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.kmo-card {
+    background: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+    font-size: 1.2rem;
+    font-weight:bold;
+}
+
+
+.kmo-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+    font-weight: normal;
+}
+
+.line-top {
+    border-top: 2px solid var(--primary-color);
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.kmo-pane{
+ 
+
+}
+
+
+.program-event-title-text {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align:center;
+}
+
+.program-event-title {
+    background: linear-gradient(135deg, var(--secondary-color), #2c3e50);
+    color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+   
+}
+
+.program-event-pane {
+    padding: 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    margin-bottom: 2rem;
+}
+
+
+.program-event-pane-columns {
+    display: grid;
+    grid-template-columns: 1fr 5fr; /* первая колонка в 2 раза уже второй */
+    gap: 30px;
+}
+
+/*.program-event-pane-columns > p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}*/
+
+.kmo-card .cta-buttons {
+    margin-top: 10px;
+}
+
+.kmo-card .btn {
+    margin: 5px 0;
+}
+
+.program-event-pane-columns-in-kmo {
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr; /* первая колонка в 2 раза уже второй */
+    gap: 30px;
+
+}
+
+.program-event-pane-columns-in-kmo-4 {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr 2.5fr 2fr; /* первая колонка в 2 раза уже второй */
+    gap: 30px;
+
+}
+
+.program-event-pane-columns > *:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+
+.program-event-text {
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+
+}
+
+.program-event-text.time {
+    font-weight: bold;
+        text-align:center;
+}
+.program-event-text.title {
+    font-size: 1.2rem;
+  
+}
+.program-event-text.italic {
+    font-style: italic
+}
+
+.program-event-date-pane {
+    padding: 0rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    border: 2px solid var(--primary-color);
+}
+
+
+.program-event-place-text {
+    margin-left: 3rem;
+    font-size: 1.2rem;
+}
+.program-event-date-text {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align:center;
+}
+
+.video-content-text {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+html {
+    scroll-behavior: smooth; /* Включаем плавный скролл для всей страницы */
+}
+

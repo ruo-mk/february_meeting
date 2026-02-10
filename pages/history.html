@@ -1,0 +1,1299 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История дошкольного образования - Digital-талисман</title>
+    <style>
+        /* Основные стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Инфографика */
+        .infographics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 4rem 0;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .info-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            line-height: 1;
+            margin: 1rem 0;
+        }
+
+        .info-label {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Временная шкала */
+        .timeline-container {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            margin: 4rem 0;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 25%;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #3498db, #2ecc71);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3498db;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 25px;
+            height: 25px;
+            background: white;
+            border: 5px solid #3498db;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+
+        .event-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-icon {
+            font-size: 1.8rem;
+        }
+
+        .event-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .event-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat strong {
+            color: #2c3e50;
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        /* Галерея */
+        .gallery-section {
+            margin: 4rem 0;
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-year {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Карта развития */
+        .map-section {
+            margin: 4rem 0;
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .map-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+        }
+
+        .map-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .location-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s;
+            border-left: 5px solid #3498db;
+        }
+
+        .location-card:hover {
+            background: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .location-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .location-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        /* Футер */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #95a5a6;
+        }
+
+        /* Талисман */
+        .mascot {
+            position: fixed;
+            bottom: -20px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .mascot img {
+            width: 240px;
+            height: 300px;
+            cursor: pointer;
+            transition: all 0.3s;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+            border-radius: 50%;
+            border: 4px solid white;
+            background: linear-gradient(45deg, #8b4513, #d2691e);
+        }
+
+        .mascot img:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 8px 25px rgba(0,0,0,0.4));
+        }
+
+        .speech-bubble {
+            position: absolute;
+            bottom: 140px;
+            right: 0;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            max-width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            animation: bubbleAppear 0.3s ease;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 30px;
+            border-width: 15px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+
+        .mascot:hover .speech-bubble {
+            display: block;
+        }
+
+        @keyframes bubbleAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+                justify-content: flex-start;
+                padding-left: 60px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-year {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline-container,
+            .gallery-section,
+            .map-section {
+                padding: 2rem;
+            }
+            
+            .infographics {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            header {
+                padding: 2rem 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            .mascot img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Дополнительные эффекты */
+        .highlight {
+            background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            padding: 0.2em 0.4em;
+            border-radius: 0.3em;
+            font-weight: 600;
+        }
+
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #3498db;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            color: #555;
+        }
+
+        .author {
+            text-align: right;
+            font-weight: 600;
+            color: #7f8c8d;
+            margin-top: 0.5rem;
+        }
+
+        /* Прогресс бар */
+        .progress-section {
+            margin: 3rem 0;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Талисман -->
+    <div class="mascot">
+        <div class="speech-bubble">
+            Изучайте историю дошкольного образования нашего улуса!
+        </div>
+        <img src="images/mascot/horse-idle.png" alt="Талисман-конь" onclick="mascotClick()">
+    </div>
+
+    <div class="container">
+        <!-- Шапка -->
+        <header>
+            <div class="header-bg"></div>
+            <div class="header-content animate">
+                <h1>История дошкольного образования</h1>
+                <p class="subtitle">Мегино-Кангаласский улус • 100 лет развития • 1924–2024</p>
+                <a href="../index.html" class="back-btn">← Вернуться на главную</a>
+            </div>
+        </header>
+
+        <!-- Инфографика -->
+        <section class="infographics animate">
+            <div class="info-card">
+                <span class="info-icon">📅</span>
+                <span class="info-number">100</span>
+                <span class="info-label">лет истории</span>
+            </div>
+            
+            <div class="info-card">
+                <span class="info-icon">🏫</span>
+                <span class="info-number">20+</span>
+                <span class="info-label">детских садов</span>
+            </div>
+            
+            <div class="info-card">
+                <span class="info-icon">👨‍👩‍👧‍👦</span>
+                <span class="info-number">3,200+</span>
+                <span class="info-label">детей ежегодно</span>
+            </div>
+            
+            <div class="info-card">
+                <span class="info-icon">👩‍🏫</span>
+                <span class="info-number">450+</span>
+                <span class="info-label">воспитателей</span>
+            </div>
+        </section>
+
+        <!-- Временная шкала -->
+        <section class="timeline-container animate">
+            <h2 class="timeline-title">Хронология развития</h2>
+            
+            <div class="timeline">
+                <!-- 1924 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1924</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">🎯</span>
+                            Первый детский сад
+                        </h3>
+                        <p class="event-description">
+                            В селе <span class="highlight">Майя</span> открылся первый детский сад на 20 мест. 
+                            Воспитателями стали выпускницы педагогических курсов из Якутска. 
+                            Занятия проводились в приспособленном помещении.
+                        </p>
+                        <div class="event-stats">
+                            <div class="stat">
+                                <strong>20</strong>
+                                <span>детей</span>
+                            </div>
+                            <div class="stat">
+                                <strong>2</strong>
+                                <span>воспитателя</span>
+                            </div>
+                            <div class="stat">
+                                <strong>40 м²</strong>
+                                <span>площадь</span>
+                            </div>
+                        </div>
+                        <blockquote class="quote">
+                            "Дети - наше будущее, и мы должны заботиться об их воспитании с самых ранних лет"
+                            <div class="author">Из отчета улусного отдела образования, 1924 г.</div>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- 1938 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1938</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">📈</span>
+                            Развитие сети
+                        </h3>
+                        <p class="event-description">
+                            Открыты детские сады в селах <span class="highlight">Нерюктяйинск, Тюнгюлю и Хаптагай</span>. 
+                            Всего в улусе работает 5 дошкольных учреждений. Вводится стандартная программа воспитания.
+                        </p>
+                        <div class="event-stats">
+                            <div class="stat">
+                                <strong>5</strong>
+                                <span>детских садов</span>
+                            </div>
+                            <div class="stat">
+                                <strong>150</strong>
+                                <span>детей</span>
+                            </div>
+                            <div class="stat">
+                                <strong>15</strong>
+                                <span>воспитателей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1957 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1957</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">📚</span>
+                            Якутский язык в обучении
+                        </h3>
+                        <p class="event-description">
+                            Разработана первая программа дошкольного воспитания на <span class="highlight">якутском языке</span>. 
+                            Детские сады начинают использовать национальные игры и сказки в образовательном процессе.
+                        </p>
+                        <div class="event-stats">
+                            <div class="stat">
+                                <strong>12</strong>
+                                <span>садов</span>
+                            </div>
+                            <div class="stat">
+                                <strong>80%</strong>
+                                <span>на родном языке</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1975 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1975</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">🏗️</span>
+                            Строительство типовых садов
+                        </h3>
+                        <p class="event-description">
+                            Построены первые типовые здания детских садов в <span class="highlight">Майе и Нижнем Бестяхе</span>. 
+                            Улучшены условия: появились спортивные залы, бассейны, музыкальные классы.
+                        </p>
+                        <div class="event-stats">
+                            <div class="stat">
+                                <strong>3</strong>
+                                <span>новых здания</span>
+                            </div>
+                            <div class="stat">
+                                <strong>120</strong>
+                                <span>мест каждое</span>
+                            </div>
+                            <div class="stat">
+                                <strong>2 млн ₽</strong>
+                                <span>инвестиции</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1992 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1992</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">🏢</span>
+                            Частные детские сады
+                        </h3>
+                        <p class="event-description">
+                            В условиях перехода к рыночной экономике открываются первые <span class="highlight">частные дошкольные учреждения</span>. 
+                            Появляются новые формы работы с детьми и дополнительные услуги.
+                        </p>
+                        <blockquote class="quote">
+                            "Частный детский сад - это не бизнес, а миссия. Мы хотим дать детям больше возможностей для развития"
+                            <div class="author">Основатель первого частного детского сада</div>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- 2010 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">💻</span>
+                            Цифровизация образования
+                        </h3>
+                        <p class="event-description">
+                            Детские сады оснащаются <span class="highlight">компьютерами и интерактивными досками</span>. 
+                            Внедряются образовательные программы с использованием цифровых технологий.
+                        </p>
+                        <div class="event-stats">
+                            <div class="stat">
+                                <strong>45</strong>
+                                <span>компьютеров</span>
+                            </div>
+                            <div class="stat">
+                                <strong>12</strong>
+                                <span>интерактивных досок</span>
+                            </div>
+                            <div class="stat">
+                                <strong>85%</strong>
+                                <span>обученных воспитателей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        
+                        <h3 class="event-title">
+                            <span class="event-icon">🎉</span>
+                            100-летие дошкольного образования
+                        </h3>
+                        <p class="event-description">
+                            <span class="highlight">Юбилейный год!</span> В улусе работает 45 дошкольных учреждений разного типа. 
+                            Внедряются инновационные методики, сохраняются национальные традиции воспитания.
+                        </p>
+                        <div class="event-stats">
+                            <div class="stat">
+                                <strong>45</strong>
+                                <span>детских садов</span>
+                            </div>
+                            <div class="stat">
+                                <strong>3,200</strong>
+                                <span>детей</span>
+                            </div>
+                            <div class="stat">
+                                <strong>98%</strong>
+                                <span>охват</span>
+                            </div>
+                        </div>
+                        <blockquote class="quote">
+                            "За 100 лет мы прошли огромный путь - от одного маленького садика до современной системы дошкольного образования"
+                            <div class="author">Начальник управления образования улуса</div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Прогресс -->
+        <section class="progress-section animate">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 2rem;">Динамика развития</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>1924</span>
+                    <span>2024</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #2c3e50;">1</div>
+                        <div style="color: #7f8c8d;">садик в 1924</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #2c3e50;">→</div>
+                        <div style="color: #7f8c8d;">развитие</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: bold; color: #2c3e50;">45</div>
+                        <div style="color: #7f8c8d;">садиков в 2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея -->
+        <section class="gallery-section animate">
+            <h2 class="gallery-title">Фотографии из истории</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openPhoto(1)">
+                    <div class="gallery-year">1924</div>
+                    <img src="https://opochka.ru/sites/default/files/old/images/news/1956.jpg" alt="Первый детский сад">
+                    <div class="gallery-overlay">
+                        <h3>Первый детский сад в Майе</h3>
+                        <p>Открытие первого дошкольного учреждения</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" onclick="openPhoto(2)">
+                    <div class="gallery-year">1957</div>
+                    <img src="https://www.maam.ru/images/photos/medium/article18012.jpg" alt="Занятия на якутском языке">
+                    <div class="gallery-overlay">
+                        <h3>Занятия на родном языке</h3>
+                        <p>Изучение якутских сказок и игр</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" onclick="openPhoto(3)">
+                    <div class="gallery-year">1975</div>
+                    <img src="https://novour.ru/uploads/posts/2023-09/img_5628.jpg" alt="Новое здание детского сада">
+                    <div class="gallery-overlay">
+                        <h3>Типовой детский сад</h3>
+                        <p>Один из первых садов, построенных по современным технологиям</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" onclick="openPhoto(4)">
+                    <div class="gallery-year">2024</div>
+                    <img src="https://ysia.ru/wp-content/uploads/2024/05/photo_5237850061176689278_y.jpg" alt="Современный детский сад">
+                    <div class="gallery-overlay">
+                        <h3>Новые технологии</h3>
+                        <p>Интерактивное обучение сегодня</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Карта развития -->
+        <section class="map-section animate">
+            <h2 class="map-title">География развития</h2>
+            <div class="map-container">
+                <div class="location-card">
+                    <h3 class="location-name">📍 с. Майя</h3>
+                    <p>Административный центр улуса. Здесь началась история дошкольного образования в 1924 году.</p>
+                    <div class="location-stats">
+                        <span>🏫 12 садов</span>
+                        <span>👶 950 детей</span>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <h3 class="location-name">📍 с. Нижний Бестях</h3>
+                    <p>Крупнейшее село улуса. Активно развивается сеть современных дошкольных учреждений.</p>
+                    <div class="location-stats">
+                        <span>🏫 8 садов</span>
+                        <span>👶 700 детей</span>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <h3 class="location-name">📍 с. Нерюктяйинск</h3>
+                    <p>Один из старейших детских садов открыт в 1938 году. Сохраняет традиции воспитания.</p>
+                    <div class="location-stats">
+                        <span>🏫 5 садов</span>
+                        <span>👶 400 детей</span>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <h3 class="location-name">📍 с. Тюнгюлю</h3>
+                    <p>Известен инновационными подходами к дошкольному образованию.</p>
+                    <div class="location-stats">
+                        <span>🏫 4 сада</span>
+                        <span>👶 350 детей</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Digital-талисман</h3>
+                        <p>Собираем и сохраняем историю дошкольного образования Мегино-Кангаласского улуса</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Навигация</h3>
+                        <ul class="footer-links">
+                            <li><a href="../index.html">🏠 Главная</a></li>
+                            <li><a href="history.html">📜 История</a></li>
+                            <li><a href="stories.html">📖 Истории</a></li>
+                            <li><a href="benefits.html">🎯 Польза образования</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Участие</h3>
+                        <ul class="footer-links">
+                            <li><a href="add-story.html">✍️ Добавить историю</a></li>
+                            <li><a href="contacts.html">📞 Контакты</a></li>
+                            <li><a href="about.html">ℹ️ О проекте</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>© 2024 Digital-талисман. 100 лет дошкольного образования Мегино-Кангаласского улуса</p>
+                    <p>Республика Саха (Якутия)</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Модальное окно для фотографий -->
+    <div id="photoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="position: relative; max-width: 90%; max-height: 90%;">
+            <button onclick="closePhoto()" style="position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer;">×</button>
+            <img id="modalPhoto" src="" alt="" style="max-width: 100%; max-height: 80vh; border-radius: 10px;">
+            <div id="photoCaption" style="color: white; text-align: center; margin-top: 20px; font-size: 1.2rem;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Страница истории загружена');
+            
+            // Анимация появления элементов
+            const animateElements = () => {
+                const elements = document.querySelectorAll('.animate');
+                elements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            };
+
+            // Устанавливаем начальные стили для анимации
+            document.querySelectorAll('.animate').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+
+            // Запускаем анимацию
+            setTimeout(animateElements, 300);
+
+            // Инициализация инфографики
+            initInfographics();
+            
+            // Инициализация временной шкалы
+            initTimeline();
+            
+            // Загрузка данных
+            loadStatistics();
+        });
+
+        // Функции для инфографики
+        function initInfographics() {
+            const infoCards = document.querySelectorAll('.info-card');
+            infoCards.forEach((card, index) => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-15px) scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(-10px) scale(1)';
+                });
+            });
+        }
+
+        // Функции для временной шкалы
+        function initTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            // Анимация при скролле
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            timelineItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = index % 2 === 0 ? 'translateX(-50px)' : 'translateX(50px)';
+                item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(item);
+            });
+        }
+
+        // Функции для галереи
+        function openPhoto(photoNumber) {
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalPhoto');
+            const caption = document.getElementById('photoCaption');
+            
+            const photos = [
+                {
+                    src: 'https://opochka.ru/sites/default/files/old/images/news/1956.jpg',
+                    title: 'Первый детский сад в Майе (1924)',
+                    desc: 'Историческое фото открытия первого дошкольного учреждения в улусе'
+                },
+                {
+                    src: 'https://www.maam.ru/images/photos/medium/article18012.jpg',
+                    title: 'Занятия на якутском языке (1957)',
+                    desc: 'Дети изучают родной язык через народные сказки'
+                },
+                {
+                    src: 'https://novour.ru/uploads/posts/2023-09/img_5628.jpg',
+                    title: 'Новое здание детского сада (1975)',
+                    desc: 'Типовой проект с современными условиями для детей'
+                },
+                {
+                    src: 'https://ysia.ru/wp-content/uploads/2024/05/photo_5237850061176689278_y.jpg',
+                    title: 'Цифровые технологии (2024)',
+                    desc: 'Интерактивное обучение в современном детском саду'
+                }
+            ];
+            
+            if (photoNumber >= 1 && photoNumber <= photos.length) {
+                const photo = photos[photoNumber - 1];
+                modalImg.src = photo.src;
+                caption.innerHTML = `<h3>${photo.title}</h3><p>${photo.desc}</p>`;
+                modal.style.display = 'flex';
+                
+                // Анимация появления
+                setTimeout(() => {
+                    modal.style.opacity = '1';
+                }, 10);
+            }
+        }
+
+        function closePhoto() {
+            const modal = document.getElementById('photoModal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Закрытие модального окна при клике вне картинки
+        document.getElementById('photoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePhoto();
+            }
+        });
+
+        // Функции для талисмана
+        function mascotClick() {
+            const bubble = document.querySelector('.speech-bubble');
+            const messages = [
+                "Изучайте 100-летнюю историю дошкольного образования!",
+                "От одного детского сада в 1924 году до 45 сегодня!",
+                "Каждая эпоха внесла свой вклад в развитие образования",
+                "Наша история - это история любви к детям",
+                "Сохраним память для будущих поколений!"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            bubble.textContent = randomMessage;
+            
+            // Анимация
+            bubble.style.display = 'block';
+            setTimeout(() => {
+                bubble.style.display = 'none';
+            }, 4000);
+            
+            // Анимация талисмана
+            const mascotImg = document.querySelector('.mascot img');
+            mascotImg.style.transform = 'scale(1.2) rotate(10deg)';
+            setTimeout(() => {
+                mascotImg.style.transform = 'scale(1.1) rotate(5deg)';
+            }, 300);
+        }
+
+        // Функции для статистики
+        function loadStatistics() {
+            // В реальном приложении здесь будет загрузка данных с сервера
+            console.log('Статистика загружена');
+            
+            // Анимация счетчиков
+            animateCounter('100', 'info-number', 2000);
+        }
+
+        function animateCounter(target, selector, duration) {
+            const elements = document.querySelectorAll(`.${selector}`);
+            elements.forEach(el => {
+                const finalValue = parseInt(target || el.textContent);
+                let current = 0;
+                const increment = finalValue / (duration / 16);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= finalValue) {
+                        current = finalValue;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.floor(current) + (finalValue === 100 ? '' : '+');
+                }, 16);
+            });
+        }
+
+        // Прокрутка к секциям
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Обработка клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePhoto();
+            }
+        });
+
+        // Добавляем интерактивность для временной шкалы
+        document.querySelectorAll('.timeline-content').forEach(content => {
+            content.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                const year = this.querySelector('.timeline-year').textContent;
+                console.log(`Открыта информация о ${year} годе`);
+            });
+        });
+
+        // Добавляем эффект параллакса для шапки
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('header');
+            header.style.transform = `translateY(${scrolled * 0.1}px)`;
+        });
+    </script>
+</body>
+</html>
