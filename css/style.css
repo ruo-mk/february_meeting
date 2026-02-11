@@ -354,9 +354,11 @@ body {
         font-size: 0.9rem;
         padding: 0 10px;
     }
-
     .video-section {
-        padding: 1rem 0.5rem;
+        padding: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     /* Основные кнопки */
@@ -457,6 +459,23 @@ body {
     .program-event-date-text p {
         margin-bottom: 5px;
         font-size: 0.9rem;
+    }
+
+
+    .video-section {
+        padding: 1rem;
+    }
+
+    .video-content-text p {
+        font-size: 1rem;
+    }
+
+    .video-content-text strong {
+        font-size: 1.1rem;
+    }
+
+    .video-controls {
+        flex-direction: column;
     }
 }
 
@@ -598,6 +617,34 @@ body {
 
 /*Видео Обращение*/
 
+.play-btn {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.video-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+}
+.video-btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
 .video-section {
     text-align: center;
     padding: 3rem 1rem;
@@ -608,17 +655,30 @@ body {
 }
 
 .video-container {
-    text-align: center;
-    padding-left: 6rem;
-    padding-right: 6rem;
-    margin-bottom: 2rem;
-    margin-top:2rem;
+    width: 100%;
+    padding: 0;
+    margin: 1rem 0 2rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background: #000;
 }
+    .video-container::before {
+        content: '';
+        display: block;
+        padding-top: 56.25%; /* Соотношение 16:9 */
+    }
 
-.video-container iframe {
-    aspect-ratio: 16 / 9;
-    transition: opacity 0.3s ease;
-}
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #000;
+    }
 
 .video-container.hidden iframe {
     opacity: 0;
