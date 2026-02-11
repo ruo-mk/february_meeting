@@ -50,18 +50,27 @@ body {
     }
 
 .header-content h1 {
-  font-family: 'Roboto Slab', serif;
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-  text-align:center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    word-break: normal;
+    overflow-wrap: break-word;
+    text-align:center;
 }
-.header-content p {
-    text-align: center;
-    white-space: normal; /* Обычные переносы, но можно добавить: */
-    hyphens: auto; /* Автоматические переносы с дефисами */
+.header-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    text-align:center;
 }
 
+.h1-line {
+    display: block;
+    word-break: keep-all;
+    white-space: normal;
+    text-align: center
+}
 
 .header-logo img {
   height: auto;
@@ -261,12 +270,24 @@ body {
         display: block;
         margin-top: 1rem;
     }
+
         .header-content h1 {
             font-size: 1.4rem;
             line-height: 1.3;
         }
 
+    .h1-line {
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
 
+    .header-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
 
     .header-content p {
         font-size: 0.9rem;
@@ -441,7 +462,18 @@ body {
     }
 
     .header-content h1 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+    }
+
+    /* Разбиваем длинные слова с мягкими переносами */
+    .header-content {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+    }
+
+    /* Добавляем мягкие переносы для сложных слов */
+    .h1-line::after {
+        content: '';
     }
 
     .kmo-card {
