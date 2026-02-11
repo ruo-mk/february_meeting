@@ -55,7 +55,12 @@ body {
     margin-bottom: 10px;
     word-break: normal;
     overflow-wrap: break-word;
-    text-align:center;
+    text-align: center;
+
+
+    hyphens: none; /* Запрещаем переносы с дефисами */
+    -webkit-hyphens: none; /* Для Safari */
+    -moz-hyphens: none; /* Для Firefox */
 }
 .header-subtitle {
     font-size: 0.9rem;
@@ -269,11 +274,17 @@ body {
     .header-content {
         display: block;
         margin-top: 1rem;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        hyphens: none;
     }
 
         .header-content h1 {
             font-size: 1.4rem;
             line-height: 1.3;
+            word-break: break-all;
+            overflow-wrap: break-word; 
+            hyphens: none; 
         }
 
     .h1-line {
