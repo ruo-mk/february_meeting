@@ -58,7 +58,8 @@ body {
 }
 .header-content p {
     text-align: center;
-
+    white-space: normal; /* Обычные переносы, но можно добавить: */
+    hyphens: auto; /* Автоматические переносы с дефисами */
 }
 
 
