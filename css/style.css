@@ -50,32 +50,18 @@ body {
     }
 
 .header-content h1 {
-    font-size: 1.8rem;
-    line-height: 1.3;
-    margin-bottom: 10px;
-    word-break: normal;
-    overflow-wrap: break-word;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
     text-align: center;
-
-
-    hyphens: none; /* Запрещаем переносы с дефисами */
-    -webkit-hyphens: none; /* Для Safari */
-    -moz-hyphens: none; /* Для Firefox */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    overflow-wrap: normal; /* Переносим только по пробелам */
+    word-break: keep-all; /* Не разрываем слова */
 }
-.header-subtitle {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    word-break: break-word;
-    overflow-wrap: anywhere;
-    text-align:center;
+.header-content p {
+    text-align: center;
 }
 
-.h1-line {
-    display: block;
-    word-break: keep-all;
-    white-space: normal;
-    text-align: center
-}
 
 .header-logo img {
   height: auto;
@@ -274,31 +260,13 @@ body {
     .header-content {
         display: block;
         margin-top: 1rem;
-        word-break: break-all;
-        overflow-wrap: break-word;
-        hyphens: none;
     }
-
         .header-content h1 {
             font-size: 1.4rem;
             line-height: 1.3;
-            word-break: break-all;
-            overflow-wrap: break-word; 
-            hyphens: none; 
         }
 
-    .h1-line {
-        word-break: normal;
-        overflow-wrap: break-word;
-        hyphens: auto;
-    }
 
-    .header-subtitle {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        word-break: break-word;
-        overflow-wrap: anywhere;
-    }
 
     .header-content p {
         font-size: 0.9rem;
@@ -473,18 +441,7 @@ body {
     }
 
     .header-content h1 {
-        font-size: 1.2rem;
-    }
-
-    /* Разбиваем длинные слова с мягкими переносами */
-    .header-content {
-        word-break: break-word;
-        overflow-wrap: anywhere;
-    }
-
-    /* Добавляем мягкие переносы для сложных слов */
-    .h1-line::after {
-        content: '';
+        font-size: 1.1rem;
     }
 
     .kmo-card {
