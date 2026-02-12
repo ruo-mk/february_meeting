@@ -7,12 +7,12 @@
     <meta name="description" content="Февральское совещание работников образования - Нахаринское КМО">
 
     <!-- PWA мета-теги -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="theme-color" content="#2c3e50">
 
     <!-- Иконки -->
-    <link rel="icon" href="icon/ruo-icon-72x72.png">
-    <link rel="apple-touch-icon" href="icon/icon-152x152.png">
+    <link rel="icon" href="../icon/ruo-icon-72x72.png">
+    <link rel="apple-touch-icon" href="../icon/icon-152x152.png">
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css">
@@ -200,6 +200,17 @@
                 </div>
             </section>
 
+            <!-- Фотоальбом с публичной папки Яндекс.Диска -->
+            <section class="yandex-photo-album">
+                <div class="album-header">
+                    <h2 class="album-title">Фотоальбом</h2>
+                    <p class="album-subtitle">Февральское совещание Нахаринского КМО — 12 февраля 2026</p>
+                    <hr class="line-top">
+                </div>
+
+                <div id="yandexFolderContainer" class="photo-simple-grid"></div>
+            </section>
+
         </main>
 
         <!-- Футер -->
@@ -214,7 +225,8 @@
     </div>
 
     <!-- Скрипты -->
-    <script src="js/app.js"></script>
+    <!--<script src="js/app.js"></script>-->
+    <script src="../js/autoPhotos.js"></script>
 
     <!-- Регистрация Service Worker -->
     <script>
